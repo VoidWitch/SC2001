@@ -3,6 +3,16 @@ include <studio.h>
 
 
 
+// dataGeneration
 
 
-// merge
+
+// mergeSort
+
+
+
+// insertionSort
+
+
+
+// main
