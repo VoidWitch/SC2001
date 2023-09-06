@@ -16,9 +16,9 @@ Algorithm Analysis (Theoretical)
 - time complexity for all 3 cases
 
 Algorithm Analysis (Empirical)
-1. Number of key comparisons Vs. input size
-2. Number of key comparisons Vs. S value
-3. Determining the optimal value for S
+1. With the value of S fixed, plot the number of key comparisons over different sizes of the input list n.
+3. With the input size n fixed, plot the number of key comparisons over different values of S. 
+4. Using different sizes of input datasets, determine the optimal value for S
 
 Comparing Hybrid Sort and the original Merge Sort algorithm
 - performance: how much faster is it
