@@ -23,9 +23,9 @@ int main(){
     do {
         printf("Input array size: ");
         scanf("%i", &input);
-        MergeSort(arrGeneration(input), 0, input - 1, S); //start, end index of arr
         time1 = clock(); //get initial time
         time1 = time1 / CLOCKS_PER_SEC;
+        MergeSort(arrGeneration(input), 0, input - 1, S); //start, end index of arr
         timedif = (clock()/CLOCKS_PER_SEC) - time1;  //get final time and get diff
         printf("%f ", timedif); //runtime for each arr
     } while (input > 0);
@@ -34,9 +34,9 @@ int main(){
     int* B = arrGeneration(1000);   //fixed arr size
     //S range from [1, 10, 100...10e6] -> optimal technically arnd 10-100
     for(i = 1; i <= Smax; i *= 10){
-        MergeSort(B, 0, 999, i);
         time1 = clock(); //get initial time
         time1 = time1 / CLOCKS_PER_SEC;
+        MergeSort(B, 0, 999, i);
         timedif = (clock()/CLOCKS_PER_SEC) - time1;  //get final time and get diff
         printf("%f ", timedif); //runtime for each arr
     }
