@@ -3,11 +3,11 @@ import time
 
 N = 10000000
 Min = 500000
-Smax = 1000000
+S = 50
 X = 10000000
 maxarrsize = 50000
 
-def merge_sort(arr, l, r, S):
+def merge_sort(arr, l, r):
     cmp = 0
     if l < r:
         mid = (l + r) // 2
@@ -15,8 +15,8 @@ def merge_sort(arr, l, r, S):
             cmp += insertion_sort(arr, l, mid)
             cmp += insertion_sort(arr, mid + 1, r)
         else:
-            cmp += merge_sort(arr, l, mid, S)
-            cmp += merge_sort(arr, mid + 1, r, S)
+            cmp += merge_sort(arr, l, mid)
+            cmp += merge_sort(arr, mid + 1, r)
         cmp += merge(arr, l, mid, r)
     return cmp
 
@@ -55,11 +55,10 @@ def print_array(arr):
 def main():
     for c in range(1, maxarrsize + 1):
         arr = generate_array(c)
-        S = random.randint(Min, Smax)
         
         cmp = 0
         start_time = time.perf_counter()
-        cmp = merge_sort(arr, 0, c - 1, S)
+        cmp = merge_sort(arr, 0, c - 1)
         end_time = time.perf_counter()
         
         timedif = end_time - start_time
