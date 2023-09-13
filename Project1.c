@@ -14,6 +14,7 @@ int merge(int arr[], int left, int middle, int right);
 int insertionSort(int arr[], int left, int right);
 void arrGeneration(int *arr, int arr_size);
 void printArray(int* arr, int size);
+void swap(int *a, int *b);
 
 int main()
 {
