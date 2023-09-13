@@ -1,11 +1,11 @@
 import random
 import time
-import ctypes
 
 N = 10000000
 Min = 500000
 Smax = 1000000
 X = 10000000
+maxarrsize = 50000
 
 def merge_sort(arr, l, r, S):
     cmp = 0
@@ -53,20 +53,17 @@ def print_array(arr):
     print("Current Array:", arr)
 
 def main():
-    while True:
-        size = int(input("Input array size: "))
-        if size < 1:
-            break
-        S = int(input("Input threshold value S: "))
-        arr = generate_array(size)
-        print_array(arr)
+    for c in range(1, maxarrsize + 1):
+        arr = generate_array(c)
+        S = random.randint(Min, Smax)
         
         cmp = 0
         start_time = time.perf_counter()
-        cmp = merge_sort(arr, 0, size - 1, S)
+        cmp = merge_sort(arr, 0, c - 1, S)
         end_time = time.perf_counter()
         
         timedif = end_time - start_time
+        print("size:", c)
         print("Time consumed:", timedif)
         print("Number of comparisons:", cmp)
 
