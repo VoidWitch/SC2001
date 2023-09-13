@@ -6,6 +6,7 @@
 #define N 10000000
 #define Min 500000
 #define Smax 1000000
+#define X 10000000
 
 //functions
 int MergeSort(int *arr, int l, int r, int S);
@@ -73,8 +74,9 @@ int main()
 
 // dataGeneration
 void arrGeneration(int *arr, int arr_size){   //1 arr is sufficient, index data override for increasing sizes
-    for (int i = 0; i < arr_size; i++){
-        arr[i] = (rand() % (arr_size - 1 + 1)) + 1;  //[rand()%(upper-lower+1)] + lower
+    for (int i = 0; i < arr_size; i++)
+    {
+        arr[i] = (rand() % (X - 1 + 1)) + 1;  //[rand()%(upper-lower+1)] + lower
     }
 }
 
@@ -159,7 +161,7 @@ int insertionSort(int arr[], int left, int right)
 {
     int cmp = 0;
 
-    for (int i=left+1; i<=right; i++){
+    for (int i=left; i<=right; i++){
         int curr = arr[i];
         int j = i - 1;
         
