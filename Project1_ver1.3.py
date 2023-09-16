@@ -11,10 +11,19 @@ def merge_sort(arr, l, r, S):
             cmp += insertion_sort(arr, l, mid)
         else:
             cmp += merge_sort(arr, l, mid, S)
-        if (r - mid + 1) <= S:
+        if (r - mid) <= S:
             cmp += insertion_sort(arr, mid + 1, r)
         else:
             cmp += merge_sort(arr, mid + 1, r, S)
+        cmp += merge(arr, l, mid, r)
+    return cmp
+
+def merge_sortO(arr, l, r):
+    cmp = 0
+    if l < r:
+        mid = (l + r) // 2
+        cmp += merge_sortO(arr, l, mid)
+        cmp += merge_sortO(arr, mid + 1, r)
         cmp += merge(arr, l, mid, r)
     return cmp
 
@@ -57,8 +66,8 @@ def saveToList(list1,size,S,time,cmp):
     list1[3].append(cmp)
     return list1
 
-def saveToCSV(list1):
-    csv_file = "data1.csv"
+def saveToCSV(list1,name):
+    csv_file = name + ".csv"
     with open(csv_file, mode='w', newline='') as file:
         writer = csv.writer(file)
         for row in list1:
@@ -87,7 +96,7 @@ def manualTesting():
         print("Time consumed:", timedif)
         print("Number of comparisons:", cmp)
         
-    saveToCSV(list1)
+    saveToCSV(list1,"manualTesting")
     
 def fixArraySize():
     list1 = [["SizeOfArray"],["ThresholdValue"],["TimeTaken"],["NumberOfComparisons"]]
@@ -108,8 +117,9 @@ def fixArraySize():
         print("Time consumed:", timedif, "Number of comparisons:", cmp)
         
         S += 1
-        
-    saveToCSV(list1)
+    
+    name = "fixedArraySize_" + str(size)
+    saveToCSV(list1,name)
 
 def fixThresholdValue():
     list1 = [["SizeOfArray"],["ThresholdValue"],["TimeTaken"],["NumberOfComparisons"]]
@@ -132,7 +142,89 @@ def fixThresholdValue():
         size += 10
         i -= 1
     
-    saveToCSV(list1)
+    name = "fixedThresholdValue_" + str(S)
+    saveToCSV(list1,"name")
+
+def mergeInsertion():
+    list1 = [["SizeOfArray"],["ThresholdValue"],["TimeTaken"],["NumberOfComparisons"]]
+    list2 = [["SizeOfArray"],["ThresholdValue"],["TimeTaken"],["NumberOfComparisons"]]
+    size = 1
+    i = int(input("Enter the number of times: "))
+    while i > 0:
+        arr = generate_array(size)
+        temp = []
+        for _ in range(size):
+            temp.append(None)
+        for j in range(size):
+            temp[j] = arr[j]
+        cmp = 0
+        start_time = time.perf_counter()
+        cmp = merge_sortO(arr, 0, size - 1)
+        end_time = time.perf_counter()
+        
+        timedif = end_time - start_time
+        
+        saveToList(list1,size,"merge",timedif,cmp)
+        
+        print("Time consumed1:", timedif, "Number of comparisons1:", cmp)
+
+        cmp = 0;
+        start_time = time.perf_counter()
+        cmp = insertion_sort(temp, 0, size - 1)
+        end_time = time.perf_counter()
+        
+        timedif = end_time - start_time
+        
+        saveToList(list2,size,"insertion",timedif,cmp)
+        
+        print("Time consumed2:", timedif, "Number of comparisons2:", cmp)
+        
+        size += 1
+        i -= 1
+    
+    saveToCSV(list1,"Merge")
+    saveToCSV(list2,"Insertion")
+    
+def mergeMergeInsertionH():
+    list1 = [["SizeOfArray"],["ThresholdValue"],["TimeTaken"],["NumberOfComparisons"]]
+    list2 = [["SizeOfArray"],["ThresholdValue"],["TimeTaken"],["NumberOfComparisons"]]
+    S = int(input("Threshold value for Merge-insertion Hybrid: "))
+    size = 10000000
+    i = int(input("Enter the number of times: "))
+    while i > 0:
+        arr = generate_array(size)
+        temp = []
+        for _ in range(size):
+            temp.append(None)
+        for j in range(size):
+            temp[j] = arr[j]
+        cmp = 0
+        start_time = time.perf_counter()
+        cmp = merge_sort(arr, 0, size - 1,S)
+        end_time = time.perf_counter()
+        
+        timedif = end_time - start_time
+        
+        saveToList(list1,size,S,timedif,cmp)
+        
+        print("Time consumed1:", timedif, "Number of comparisons1:", cmp)
+
+        cmp = 0
+        start_time = time.perf_counter()
+        cmp = merge_sortO(temp, 0, size - 1)
+        end_time = time.perf_counter()
+        
+        timedif = end_time - start_time
+        
+        saveToList(list2,size,"insertion",timedif,cmp)
+        
+        print("Time consumed2:", timedif, "Number of comparisons2:", cmp)
+        
+        size += 1
+        i -= 1
+    
+    saveToCSV(list1,"MergeInsertionH")
+    saveToCSV(list2,"Merge")
     
 def main():
     while True:
@@ -143,6 +235,10 @@ def main():
             fixArraySize()
         if choice == 3:
             manualTesting()
+        if choice == 4:
+            mergeInsertion()
+        if choice == 5:
+            mergeMergeInsertionH()
         if choice == 0:
             break
     
