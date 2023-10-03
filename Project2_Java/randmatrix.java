@@ -1,10 +1,25 @@
-import java.util.ArrayList;
+package Project2_Java;
 
-import org.w3c.dom.Node;
+import java.util.ArrayList;
 
 public class randmatrix {
     /* - Generates a random 2D n element square matrix - connected graph with random weights
        - Weights obtained randomly within range determined by min max values: adjusted with inputs */
+    public static class Node {        
+        private int id;                 //vertex
+        private int weight;             //weight
+    
+        public Node(int id, int weight) {
+            this.id = id;
+            this.weight = weight;
+        }
+        public int getId() {
+            return id;
+        }
+        public int getWeight() {
+            return weight;
+        }
+    }
 
     public static int[][] randArr(int n, int min, int max) { // n elements, max and min weight range
         int[][] arr = new int[n][n];
@@ -12,15 +27,15 @@ public class randmatrix {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     if (i == j) {
-                        arr[i][j] = 0; // diagonal entries 0
+                        arr[i][j] = 0;         // diagonal entries 0
                         continue;
                     }
                     int weight = (int)(Math.random() * (double)(max-min+1) + (double) min);   
-                    weight = weight < 0 ? 0 : weight;   //if weight<0, assume unconnected
+                    weight = weight < 0 ? 0 : weight;           //if weight<0, assume unconnected
                     arr[i][j] = weight;
                 }
             }
-        } while (!Connected(arr));   //if random arr generated is not connected
+        } while (!Connected(arr));               //if random arr generated is not connected
         return arr;
     }
 
@@ -28,13 +43,11 @@ public class randmatrix {
         /* Row connectedness check on 2D matrix */
         boolean[] visited = new boolean[arr.length];
         for (int i=0; i<visited.length; i++) {
-            visited[i] = false;     //initialize as unvisited for each vertex
+            visited[i] = false;                 //initialize as unvisited for each vertex
         }
         isConnectedFromFirstVertex(arr, 0, visited);
-        for (boolean i : visited) {     //if not visited implies unconnected
-            if (!i) {
-                return false;
-            }
+        for (boolean i : visited) {             //if not visited implies unconnected
+            if (!i) return false;
         }
         return true;
     }
@@ -48,7 +61,7 @@ public class randmatrix {
             }
         }
     }
-
+    
     public static void printMatrix(int[][] arr) {       //prints weighted directed edges
         for (int[] a : arr) {
             for (int b : a) {
@@ -62,7 +75,7 @@ public class randmatrix {
         for (int i=0; i<graph.size(); i++) {
             System.out.printf("%2d", i);
             for (Node j : graph.get(i)) {
-                System.out.printf(" -> %2d", j.getFirstChild());
+                System.out.printf(" -> %2d", j.getId());
             }
             System.out.print("\n");
         }
@@ -84,8 +97,7 @@ public class randmatrix {
         int counter = 0;
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length; j++) {
-                if (arr[i][j] > 0)
-                    counter++;
+                if (arr[i][j] > 0) counter++;
             }
         }
         return counter;
