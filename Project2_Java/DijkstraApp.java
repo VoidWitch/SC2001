@@ -102,7 +102,7 @@ public class DijkstraApp {
                 System.out.println("Array with Adjacency Matrix");
                 System.out.println("Number of comparisons made: " + counterArray);
 
-                RandomArray.to2DGraph(intGraph, graph); // convert adj matrix to adj list
+                RandomArray.toGraph(intGraph, graph); // convert adj matrix to adj list
 
                 // minheap with adjacency list
                 dijkstraMinHeap(V, graph, source);
