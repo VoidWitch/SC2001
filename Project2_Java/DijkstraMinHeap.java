@@ -35,12 +35,12 @@ public class DijkstraMinHeap {
         int numberOfVertices = 100;
         ArrayList<List<Node>> graph = new ArrayList<>();
 
-        int[][] adjacencyMatrix = RandomArray.randomSquareArray(numberOfVertices, -5, 10);
-        RandomArray.print2DArray(adjacencyMatrix);
+        int[][] adjacencyMatrix = RandomMatrix.randomSquareArray(numberOfVertices, -5, 10);
+        RandomMatrix.print2DArray(adjacencyMatrix);
 
         int source = 0;
 
-        RandomArray.to2DGraph(adjacencyMatrix, graph);
+        RandomMatrix.to2DGraph(adjacencyMatrix, graph);
 
         long startTime = System.nanoTime();
         findShortestPaths(numberOfVertices, graph, source);
