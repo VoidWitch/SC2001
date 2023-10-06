@@ -45,7 +45,7 @@ public class DijkstraArray {
 
     public static void main(String[] args) {
         int source = 0;
-        int[][] graph = RandomArray.randomSquareArray(V, 1, 10);
+        int[][] graph = RandomMatrix.randomSquareArray(V, 1, 10);
 
         for (int i = 0; i < V; i++) {
             for (int j = 0; j < V; j++) {
