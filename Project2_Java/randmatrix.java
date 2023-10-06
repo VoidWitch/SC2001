@@ -3,7 +3,7 @@ package Project2_Java;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class RandomArray {
+public class RandomMatrix {
     /* - Generates a random 2D n element square matrix - connected graph with random weights
        - Weights obtained randomly within range determined by min max values: adjusted with inputs */
     public static int[][] randomSquareArray(int n, int min, int max) { // n elements, max and min weight range
