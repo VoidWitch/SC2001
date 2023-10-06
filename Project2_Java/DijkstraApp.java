@@ -91,7 +91,7 @@ public class DijkstraApp {
                 ArrayList<ArrayList<Node>> graph = new ArrayList<>();
                 int[][] intGraph = new int[V][V];
 
-                intGraph = RandomArray.randomSquareArray(V, -10, 10);
+                intGraph = RandomMatrix.randomSquareArray(V, -10, 10);
 
                 int source = 0;
                 System.out.println("V = " + V);
@@ -102,7 +102,7 @@ public class DijkstraApp {
                 System.out.println("Array with Adjacency Matrix");
                 System.out.println("Number of comparisons made: " + counterArray);
 
-                RandomArray.toGraph(intGraph, graph); // convert adj matrix to adj list
+                RandomMatrix.toGraph(intGraph, graph); // convert adj matrix to adj list
 
                 // minheap with adjacency list
                 dijkstraMinHeap(V, graph, source);
