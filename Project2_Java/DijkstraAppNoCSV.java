@@ -80,12 +80,12 @@ public class DijkstraAppNoCSV {
         ArrayList<ArrayList<Node>> graph = new ArrayList<>();
         int[][] intGraph = new int[V][V];
 
-        intGraph = RandomArray.randomSquareArray(V, -10, 10);
+        intGraph = RandomMatrix.randomSquareArray(V, -10, 10);
 
         int source = 0;
-        System.out.println("V = " + V + " E = " + RandomArray.countEdges(intGraph));
+        System.out.println("V = " + V + " E = " + RandomMatrix.countEdges(intGraph));
         System.out.println("Adjacency Matrix:");
-        RandomArray.printArray(intGraph);
+        RandomMatrix.printArray(intGraph);
         System.out.println();
         // array with adjacency matrix
         System.out.println("Array with Adjacency Matrix Implementation");
@@ -96,11 +96,11 @@ public class DijkstraAppNoCSV {
 
         System.out.println("\n=========================================================\n");
 
-        RandomArray.toGraph(intGraph, graph); // convert adj matrix to adj list
+        RandomMatrix.toGraph(intGraph, graph); // convert adj matrix to adj list
 
         // minheap with adjacency list
         System.out.println("Adjacency Graph:");
-        RandomArray.printGraph(graph);
+        RandomMatrix.printGraph(graph);
         System.out.println("MinHeap with Adjacency List Implementation");
         dijkstraMinHeap(V, graph, source);
         System.out.println();
