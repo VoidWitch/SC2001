@@ -91,7 +91,7 @@ public class DijkstraApp {
                 ArrayList<ArrayList<Node>> graph = new ArrayList<>();
                 int[][] intGraph = new int[V][V];
 
-                intGraph = RandomArray.random2DSquareArray(V, -10, 10);
+                intGraph = RandomArray.randomSquareArray(V, -10, 10);
 
                 int source = 0;
                 System.out.println("V = " + V);
