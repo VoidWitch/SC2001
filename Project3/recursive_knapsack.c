@@ -40,3 +40,18 @@ int main()
     printf("%d", knapSack(W, weight, profit, n)); 
     return 0; 
 }
+
+
+
+/*
+profit = 0;
+Base case: 
+if ( remaining weight < min(all the weights of items) ){
+    return 0;  //profit 0 since no item added
+    
+for (each item){
+    if ( item weight < remaining weight){  //include obj and update remaining weight
+        return max(profit, profit[item] + knapsack());
+    }
+}
+*/
